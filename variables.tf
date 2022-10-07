@@ -1,7 +1,7 @@
-/* variable "varToken" {
+variable "varToken" {
   default   = ""
   sensitive = true
-} */
+}
 
 variable "varOwner" {
   type    = string

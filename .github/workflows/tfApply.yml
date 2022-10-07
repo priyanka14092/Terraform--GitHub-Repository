@@ -54,10 +54,8 @@ jobs:
           terraform plan
 
       - name: terraform apply
-        with:
-          token: ${{ secrets.TOKEN }}
         run: 
-          terraform apply -auto-approve 
+          terraform apply -var='varToken=${{ secrets.TOKEN }}' -auto-approve 
       
       - name: Show state file content after apply
         run:
