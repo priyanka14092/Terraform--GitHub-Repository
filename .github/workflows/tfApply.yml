@@ -54,3 +54,7 @@ jobs:
       - name: terraform apply
         run: 
           terraform apply -auto-approve 
+      
+      - name: Show state file content after apply
+        run:
+          cat $tfstate_file
