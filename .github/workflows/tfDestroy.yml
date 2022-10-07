@@ -14,10 +14,6 @@ jobs:
     name: terraInit
     runs-on: ubuntu-latest
 
-    # defaults:
-    #   run:
-    #     working-directory: ./module_block
-
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -41,4 +37,4 @@ jobs:
 
       - name: terraform destroy
         run: 
-          terraform destroy -auto-approve
+          terraform destroy -var='varToken=${{ secrets.TOKEN }}' -auto-approve

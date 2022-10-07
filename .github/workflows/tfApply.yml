@@ -8,7 +8,6 @@ env:
   aws_s3_bucket: priyanka-backend-bucket
   tfstate_file: terraState.tfstate
   db_table: priyanka-dynamo-table
-  # token: ${{ secrets.TOKEN }}
 
 jobs:
   terraformInit:
@@ -31,12 +30,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-      
-      # - name: Git global configure
-      #   uses: actions/labeler@v4
-      #   with:
-      #     repo-token: ${{ secrets.PAT_TOKEN }}
-       
+
       - name: terraform format
         run: 
           terraform fmt
@@ -56,7 +50,3 @@ jobs:
       - name: terraform apply
         run: 
           terraform apply -var='varToken=${{ secrets.TOKEN }}' -auto-approve 
-      
-      - name: Show state file content after apply
-        run:
-          cat $tfstate_file
