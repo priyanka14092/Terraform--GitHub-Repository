@@ -1,5 +1,4 @@
 name: GitHub Repository--Terraform-Apply
-
 on:
   workflow_dispatch:
 
@@ -13,10 +12,6 @@ jobs:
   terraformInit:
     name: terraInit
     runs-on: ubuntu-latest
-    
-    # defaults:
-    #   run:
-    #     working-directory: ./module_block
 
     steps:
       - name: checkout
@@ -35,6 +30,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
       
+      - name: Git global configure
+        uses: actions/labeler@v4
+        with:
+          pat_token: ${{ secrets.PAT_TOKEN }}
+       
       - name: terraform format
         run: 
           terraform fmt
@@ -53,4 +53,4 @@ jobs:
 
       - name: terraform apply
         run: 
-          terraform apply -auto-approve
+          terraform apply -auto-approve 
