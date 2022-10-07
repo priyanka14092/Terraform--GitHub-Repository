@@ -33,7 +33,7 @@ jobs:
       - name: Git global configure
         uses: actions/labeler@v4
         with:
-          pat_token: ${{ secrets.PAT_TOKEN }}
+          repo-token: ${{ secrets.PAT_TOKEN }}
        
       - name: terraform format
         run: 
