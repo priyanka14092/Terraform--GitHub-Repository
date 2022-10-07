@@ -8,7 +8,7 @@ env:
   aws_s3_bucket: priyanka-backend-bucket
   tfstate_file: terraState.tfstate
   db_table: priyanka-dynamo-table
-  token: ${{ secrets.TOKEN }}
+  # token: ${{ secrets.TOKEN }}
 
 jobs:
   terraformInit:
@@ -54,6 +54,8 @@ jobs:
           terraform plan
 
       - name: terraform apply
+        with:
+          token: ${{ secrets.TOKEN }}
         run: 
           terraform apply -auto-approve 
       
